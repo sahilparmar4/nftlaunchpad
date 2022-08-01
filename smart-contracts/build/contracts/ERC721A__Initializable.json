@@ -1,0 +1,2595 @@
+{
+  "contractName": "ERC721A__Initializable",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"erc721a-upgradeable/contracts/ERC721A__Initializable.sol\":\"ERC721A__Initializable\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"erc721a-upgradeable/contracts/ERC721A__Initializable.sol\":{\"keccak256\":\"0x4a78c3bccd097e704d6c37cf90af892eae0e3fcb13dcc37e5c1ad6c36f4240f0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1b2d1b219b5d96c2224b6badd91845100ee099adfb569dd898d8f305ba247c07\",\"dweb:/ipfs/QmRVNixh5LtNTDdq9aJT3kqPfZjrMmb6CC26fEuUfF61kc\"]},\"erc721a-upgradeable/contracts/ERC721A__InitializableStorage.sol\":{\"keccak256\":\"0x361a8f273736b37718a98049c3f210381c41e4241ff24a36360e417b94ad87b4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b50cfd64069938167050defd8e6640ecff6a1687ae79f7b6ffb021f3f65b60f2\",\"dweb:/ipfs/QmZa4ynQofKGCxWvM7QdVcZx3MkY3XAPeKjd65v4QvvxXK\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\n/**\n * @dev This is a base contract to aid in writing upgradeable diamond facet contracts, or any kind of contract that will be deployed\n * behind a proxy. Since proxied contracts do not make use of a constructor, it's common to move constructor logic to an\n * external initializer function, usually called `initialize`. It then becomes necessary to protect this initializer\n * function so it can only be called once. The {initializer} modifier provided by this contract will have this effect.\n *\n * TIP: To avoid leaving the proxy in an uninitialized state, the initializer function should be called as early as\n * possible by providing the encoded function call as the `_data` argument to {ERC1967Proxy-constructor}.\n *\n * CAUTION: When used with inheritance, manual care must be taken to not invoke a parent initializer twice, or to ensure\n * that all initializers are idempotent. This is not verified automatically as constructors are by Solidity.\n */\n\nimport {ERC721A__InitializableStorage} from './ERC721A__InitializableStorage.sol';\n\nabstract contract ERC721A__Initializable {\n    using ERC721A__InitializableStorage for ERC721A__InitializableStorage.Layout;\n\n    /**\n     * @dev Modifier to protect an initializer function from being invoked twice.\n     */\n    modifier initializerERC721A() {\n        // If the contract is initializing we ignore whether _initialized is set in order to support multiple\n        // inheritance patterns, but we only do this in the context of a constructor, because in other contexts the\n        // contract may have been reentered.\n        require(\n            ERC721A__InitializableStorage.layout()._initializing\n                ? _isConstructor()\n                : !ERC721A__InitializableStorage.layout()._initialized,\n            'ERC721A__Initializable: contract is already initialized'\n        );\n\n        bool isTopLevelCall = !ERC721A__InitializableStorage.layout()._initializing;\n        if (isTopLevelCall) {\n            ERC721A__InitializableStorage.layout()._initializing = true;\n            ERC721A__InitializableStorage.layout()._initialized = true;\n        }\n\n        _;\n\n        if (isTopLevelCall) {\n            ERC721A__InitializableStorage.layout()._initializing = false;\n        }\n    }\n\n    /**\n     * @dev Modifier to protect an initialization function so that it can only be invoked by functions with the\n     * {initializer} modifier, directly or indirectly.\n     */\n    modifier onlyInitializingERC721A() {\n        require(\n            ERC721A__InitializableStorage.layout()._initializing,\n            'ERC721A__Initializable: contract is not initializing'\n        );\n        _;\n    }\n\n    /// @dev Returns true if and only if the function is running in the constructor\n    function _isConstructor() private view returns (bool) {\n        // extcodesize checks the size of the code stored in an address, and\n        // address returns the current address. Since the code is still not\n        // deployed when running a constructor, any checks on its code size will\n        // yield zero, making it an effective way to detect if a contract is\n        // under construction or not.\n        address self = address(this);\n        uint256 cs;\n        assembly {\n            cs := extcodesize(self)\n        }\n        return cs == 0;\n    }\n}\n",
+  "sourcePath": "erc721a-upgradeable\\contracts\\ERC721A__Initializable.sol",
+  "ast": {
+    "absolutePath": "erc721a-upgradeable/contracts/ERC721A__Initializable.sol",
+    "exportedSymbols": {
+      "ERC721A__Initializable": [
+        8183
+      ],
+      "ERC721A__InitializableStorage": [
+        8209
+      ]
+    },
+    "id": 8184,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8082,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:34"
+      },
+      {
+        "absolutePath": "erc721a-upgradeable/contracts/ERC721A__InitializableStorage.sol",
+        "file": "./ERC721A__InitializableStorage.sol",
+        "id": 8084,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8184,
+        "sourceUnit": 8210,
+        "src": "1014:82:34",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 8083,
+              "name": "ERC721A__InitializableStorage",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "src": "1022:29:34",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 8183,
+        "linearizedBaseContracts": [
+          8183
+        ],
+        "name": "ERC721A__Initializable",
+        "nameLocation": "1116:22:34",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 8088,
+            "libraryName": {
+              "id": 8085,
+              "name": "ERC721A__InitializableStorage",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 8209,
+              "src": "1151:29:34"
+            },
+            "nodeType": "UsingForDirective",
+            "src": "1145:77:34",
+            "typeName": {
+              "id": 8087,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 8086,
+                "name": "ERC721A__InitializableStorage.Layout",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 8191,
+                "src": "1185:36:34"
+              },
+              "referencedDeclaration": 8191,
+              "src": "1185:36:34",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                "typeString": "struct ERC721A__InitializableStorage.Layout"
+              }
+            }
+          },
+          {
+            "body": {
+              "id": 8146,
+              "nodeType": "Block",
+              "src": "1356:946:34",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "condition": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "expression": {
+                                "id": 8092,
+                                "name": "ERC721A__InitializableStorage",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 8209,
+                                "src": "1658:29:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                  "typeString": "type(library ERC721A__InitializableStorage)"
+                                }
+                              },
+                              "id": 8093,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "layout",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 8208,
+                              "src": "1658:36:34",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                              }
+                            },
+                            "id": 8094,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1658:38:34",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                              "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                            }
+                          },
+                          "id": 8095,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "_initializing",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 8190,
+                          "src": "1658:52:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "falseExpression": {
+                          "id": 8102,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "UnaryOperation",
+                          "operator": "!",
+                          "prefix": true,
+                          "src": "1764:52:34",
+                          "subExpression": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "expression": {
+                                  "id": 8098,
+                                  "name": "ERC721A__InitializableStorage",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 8209,
+                                  "src": "1765:29:34",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                    "typeString": "type(library ERC721A__InitializableStorage)"
+                                  }
+                                },
+                                "id": 8099,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "layout",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": 8208,
+                                "src": "1765:36:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                                }
+                              },
+                              "id": 8100,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "1765:38:34",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                                "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                              }
+                            },
+                            "id": 8101,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "_initialized",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8188,
+                            "src": "1765:51:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 8103,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "Conditional",
+                        "src": "1658:158:34",
+                        "trueExpression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 8096,
+                            "name": "_isConstructor",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 8182,
+                            "src": "1729:14:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                              "typeString": "function () view returns (bool)"
+                            }
+                          },
+                          "id": 8097,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1729:16:34",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "455243373231415f5f496e697469616c697a61626c653a20636f6e747261637420697320616c726561647920696e697469616c697a6564",
+                        "id": 8104,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1830:57:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_839889e12ec3341373e13771f3d2344a2f7d58feea55edea2cdcb50c355c3837",
+                          "typeString": "literal_string \"ERC721A__Initializable: contract is already initialized\""
+                        },
+                        "value": "ERC721A__Initializable: contract is already initialized"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_839889e12ec3341373e13771f3d2344a2f7d58feea55edea2cdcb50c355c3837",
+                          "typeString": "literal_string \"ERC721A__Initializable: contract is already initialized\""
+                        }
+                      ],
+                      "id": 8091,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1637:7:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 8105,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1637:260:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8106,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1637:260:34"
+                },
+                {
+                  "assignments": [
+                    8108
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8108,
+                      "mutability": "mutable",
+                      "name": "isTopLevelCall",
+                      "nameLocation": "1913:14:34",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8146,
+                      "src": "1908:19:34",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 8107,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1908:4:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8114,
+                  "initialValue": {
+                    "id": 8113,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "1930:53:34",
+                    "subExpression": {
+                      "expression": {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "id": 8109,
+                            "name": "ERC721A__InitializableStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 8209,
+                            "src": "1931:29:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                              "typeString": "type(library ERC721A__InitializableStorage)"
+                            }
+                          },
+                          "id": 8110,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "layout",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 8208,
+                          "src": "1931:36:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                            "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                          }
+                        },
+                        "id": 8111,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1931:38:34",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                          "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                        }
+                      },
+                      "id": 8112,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "_initializing",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 8190,
+                      "src": "1931:52:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1908:75:34"
+                },
+                {
+                  "condition": {
+                    "id": 8115,
+                    "name": "isTopLevelCall",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8108,
+                    "src": "1997:14:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 8133,
+                  "nodeType": "IfStatement",
+                  "src": "1993:176:34",
+                  "trueBody": {
+                    "id": 8132,
+                    "nodeType": "Block",
+                    "src": "2013:156:34",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 8122,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "expression": {
+                                  "id": 8116,
+                                  "name": "ERC721A__InitializableStorage",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 8209,
+                                  "src": "2027:29:34",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                    "typeString": "type(library ERC721A__InitializableStorage)"
+                                  }
+                                },
+                                "id": 8118,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "layout",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": 8208,
+                                "src": "2027:36:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                                }
+                              },
+                              "id": 8119,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "2027:38:34",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                                "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                              }
+                            },
+                            "id": 8120,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberName": "_initializing",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8190,
+                            "src": "2027:52:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "hexValue": "74727565",
+                            "id": 8121,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2082:4:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "true"
+                          },
+                          "src": "2027:59:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 8123,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2027:59:34"
+                      },
+                      {
+                        "expression": {
+                          "id": 8130,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "expression": {
+                                  "id": 8124,
+                                  "name": "ERC721A__InitializableStorage",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 8209,
+                                  "src": "2100:29:34",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                    "typeString": "type(library ERC721A__InitializableStorage)"
+                                  }
+                                },
+                                "id": 8126,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "layout",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": 8208,
+                                "src": "2100:36:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                                }
+                              },
+                              "id": 8127,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "2100:38:34",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                                "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                              }
+                            },
+                            "id": 8128,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberName": "_initialized",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8188,
+                            "src": "2100:51:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "hexValue": "74727565",
+                            "id": 8129,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2154:4:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "true"
+                          },
+                          "src": "2100:58:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 8131,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2100:58:34"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": 8134,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "2179:1:34"
+                },
+                {
+                  "condition": {
+                    "id": 8135,
+                    "name": "isTopLevelCall",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8108,
+                    "src": "2195:14:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 8145,
+                  "nodeType": "IfStatement",
+                  "src": "2191:105:34",
+                  "trueBody": {
+                    "id": 8144,
+                    "nodeType": "Block",
+                    "src": "2211:85:34",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 8142,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "expression": {
+                                  "id": 8136,
+                                  "name": "ERC721A__InitializableStorage",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 8209,
+                                  "src": "2225:29:34",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                    "typeString": "type(library ERC721A__InitializableStorage)"
+                                  }
+                                },
+                                "id": 8138,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "layout",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": 8208,
+                                "src": "2225:36:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                                }
+                              },
+                              "id": 8139,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "2225:38:34",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                                "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                              }
+                            },
+                            "id": 8140,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberName": "_initializing",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8190,
+                            "src": "2225:52:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "hexValue": "66616c7365",
+                            "id": 8141,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2280:5:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "false"
+                          },
+                          "src": "2225:60:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 8143,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2225:60:34"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8089,
+              "nodeType": "StructuredDocumentation",
+              "src": "1228:93:34",
+              "text": " @dev Modifier to protect an initializer function from being invoked twice."
+            },
+            "id": 8147,
+            "name": "initializerERC721A",
+            "nameLocation": "1335:18:34",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 8090,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1353:2:34"
+            },
+            "src": "1326:976:34",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 8159,
+              "nodeType": "Block",
+              "src": "2526:179:34",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "expression": {
+                              "id": 8151,
+                              "name": "ERC721A__InitializableStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 8209,
+                              "src": "2557:29:34",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                "typeString": "type(library ERC721A__InitializableStorage)"
+                              }
+                            },
+                            "id": 8152,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "layout",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8208,
+                            "src": "2557:36:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                              "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                            }
+                          },
+                          "id": 8153,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "2557:38:34",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                            "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                          }
+                        },
+                        "id": 8154,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "_initializing",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 8190,
+                        "src": "2557:52:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "455243373231415f5f496e697469616c697a61626c653a20636f6e7472616374206973206e6f7420696e697469616c697a696e67",
+                        "id": 8155,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2623:54:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_239f0ec0e1e78d95d6f1cd880eea074bcac107bab4273133b159f59bd4e89b66",
+                          "typeString": "literal_string \"ERC721A__Initializable: contract is not initializing\""
+                        },
+                        "value": "ERC721A__Initializable: contract is not initializing"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_239f0ec0e1e78d95d6f1cd880eea074bcac107bab4273133b159f59bd4e89b66",
+                          "typeString": "literal_string \"ERC721A__Initializable: contract is not initializing\""
+                        }
+                      ],
+                      "id": 8150,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2536:7:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 8156,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2536:151:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8157,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2536:151:34"
+                },
+                {
+                  "id": 8158,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "2697:1:34"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8148,
+              "nodeType": "StructuredDocumentation",
+              "src": "2308:178:34",
+              "text": " @dev Modifier to protect an initialization function so that it can only be invoked by functions with the\n {initializer} modifier, directly or indirectly."
+            },
+            "id": 8160,
+            "name": "onlyInitializingERC721A",
+            "nameLocation": "2500:23:34",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 8149,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2523:2:34"
+            },
+            "src": "2491:214:34",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 8181,
+              "nodeType": "Block",
+              "src": "2849:503:34",
+              "statements": [
+                {
+                  "assignments": [
+                    8167
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8167,
+                      "mutability": "mutable",
+                      "name": "self",
+                      "nameLocation": "3216:4:34",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8181,
+                      "src": "3208:12:34",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 8166,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "3208:7:34",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8172,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 8170,
+                        "name": "this",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967268,
+                        "src": "3231:4:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_ERC721A__Initializable_$8183",
+                          "typeString": "contract ERC721A__Initializable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_contract$_ERC721A__Initializable_$8183",
+                          "typeString": "contract ERC721A__Initializable"
+                        }
+                      ],
+                      "id": 8169,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "3223:7:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_address_$",
+                        "typeString": "type(address)"
+                      },
+                      "typeName": {
+                        "id": 8168,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "3223:7:34",
+                        "typeDescriptions": {}
+                      }
+                    },
+                    "id": 8171,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3223:13:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "3208:28:34"
+                },
+                {
+                  "assignments": [
+                    8174
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8174,
+                      "mutability": "mutable",
+                      "name": "cs",
+                      "nameLocation": "3254:2:34",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8181,
+                      "src": "3246:10:34",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 8173,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "3246:7:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8175,
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "3246:10:34"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "3275:47:34",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "3289:23:34",
+                        "value": {
+                          "arguments": [
+                            {
+                              "name": "self",
+                              "nodeType": "YulIdentifier",
+                              "src": "3307:4:34"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "extcodesize",
+                            "nodeType": "YulIdentifier",
+                            "src": "3295:11:34"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "3295:17:34"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "cs",
+                            "nodeType": "YulIdentifier",
+                            "src": "3289:2:34"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 8174,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "3289:2:34",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 8167,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "3307:4:34",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 8176,
+                  "nodeType": "InlineAssembly",
+                  "src": "3266:56:34"
+                },
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 8179,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 8177,
+                      "name": "cs",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8174,
+                      "src": "3338:2:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 8178,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "3344:1:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "3338:7:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 8165,
+                  "id": 8180,
+                  "nodeType": "Return",
+                  "src": "3331:14:34"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8161,
+              "nodeType": "StructuredDocumentation",
+              "src": "2711:79:34",
+              "text": "@dev Returns true if and only if the function is running in the constructor"
+            },
+            "id": 8182,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_isConstructor",
+            "nameLocation": "2804:14:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8162,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2818:2:34"
+            },
+            "returnParameters": {
+              "id": 8165,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8164,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8182,
+                  "src": "2843:4:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 8163,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2843:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2842:6:34"
+            },
+            "scope": 8183,
+            "src": "2795:557:34",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "private"
+          }
+        ],
+        "scope": 8184,
+        "src": "1098:2256:34",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:3323:34"
+  },
+  "legacyAST": {
+    "absolutePath": "erc721a-upgradeable/contracts/ERC721A__Initializable.sol",
+    "exportedSymbols": {
+      "ERC721A__Initializable": [
+        8183
+      ],
+      "ERC721A__InitializableStorage": [
+        8209
+      ]
+    },
+    "id": 8184,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8082,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:23:34"
+      },
+      {
+        "absolutePath": "erc721a-upgradeable/contracts/ERC721A__InitializableStorage.sol",
+        "file": "./ERC721A__InitializableStorage.sol",
+        "id": 8084,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 8184,
+        "sourceUnit": 8210,
+        "src": "1014:82:34",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 8083,
+              "name": "ERC721A__InitializableStorage",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "src": "1022:29:34",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 8183,
+        "linearizedBaseContracts": [
+          8183
+        ],
+        "name": "ERC721A__Initializable",
+        "nameLocation": "1116:22:34",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "id": 8088,
+            "libraryName": {
+              "id": 8085,
+              "name": "ERC721A__InitializableStorage",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 8209,
+              "src": "1151:29:34"
+            },
+            "nodeType": "UsingForDirective",
+            "src": "1145:77:34",
+            "typeName": {
+              "id": 8087,
+              "nodeType": "UserDefinedTypeName",
+              "pathNode": {
+                "id": 8086,
+                "name": "ERC721A__InitializableStorage.Layout",
+                "nodeType": "IdentifierPath",
+                "referencedDeclaration": 8191,
+                "src": "1185:36:34"
+              },
+              "referencedDeclaration": 8191,
+              "src": "1185:36:34",
+              "typeDescriptions": {
+                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                "typeString": "struct ERC721A__InitializableStorage.Layout"
+              }
+            }
+          },
+          {
+            "body": {
+              "id": 8146,
+              "nodeType": "Block",
+              "src": "1356:946:34",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "condition": {
+                          "expression": {
+                            "arguments": [],
+                            "expression": {
+                              "argumentTypes": [],
+                              "expression": {
+                                "id": 8092,
+                                "name": "ERC721A__InitializableStorage",
+                                "nodeType": "Identifier",
+                                "overloadedDeclarations": [],
+                                "referencedDeclaration": 8209,
+                                "src": "1658:29:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                  "typeString": "type(library ERC721A__InitializableStorage)"
+                                }
+                              },
+                              "id": 8093,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "memberName": "layout",
+                              "nodeType": "MemberAccess",
+                              "referencedDeclaration": 8208,
+                              "src": "1658:36:34",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                              }
+                            },
+                            "id": 8094,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "kind": "functionCall",
+                            "lValueRequested": false,
+                            "names": [],
+                            "nodeType": "FunctionCall",
+                            "src": "1658:38:34",
+                            "tryCall": false,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                              "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                            }
+                          },
+                          "id": 8095,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "_initializing",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 8190,
+                          "src": "1658:52:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "falseExpression": {
+                          "id": 8102,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "nodeType": "UnaryOperation",
+                          "operator": "!",
+                          "prefix": true,
+                          "src": "1764:52:34",
+                          "subExpression": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "expression": {
+                                  "id": 8098,
+                                  "name": "ERC721A__InitializableStorage",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 8209,
+                                  "src": "1765:29:34",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                    "typeString": "type(library ERC721A__InitializableStorage)"
+                                  }
+                                },
+                                "id": 8099,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "layout",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": 8208,
+                                "src": "1765:36:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                                }
+                              },
+                              "id": 8100,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "1765:38:34",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                                "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                              }
+                            },
+                            "id": 8101,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "_initialized",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8188,
+                            "src": "1765:51:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 8103,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "Conditional",
+                        "src": "1658:158:34",
+                        "trueExpression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 8096,
+                            "name": "_isConstructor",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 8182,
+                            "src": "1729:14:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_view$__$returns$_t_bool_$",
+                              "typeString": "function () view returns (bool)"
+                            }
+                          },
+                          "id": 8097,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "1729:16:34",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "455243373231415f5f496e697469616c697a61626c653a20636f6e747261637420697320616c726561647920696e697469616c697a6564",
+                        "id": 8104,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "1830:57:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_839889e12ec3341373e13771f3d2344a2f7d58feea55edea2cdcb50c355c3837",
+                          "typeString": "literal_string \"ERC721A__Initializable: contract is already initialized\""
+                        },
+                        "value": "ERC721A__Initializable: contract is already initialized"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_839889e12ec3341373e13771f3d2344a2f7d58feea55edea2cdcb50c355c3837",
+                          "typeString": "literal_string \"ERC721A__Initializable: contract is already initialized\""
+                        }
+                      ],
+                      "id": 8091,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "1637:7:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 8105,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1637:260:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8106,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1637:260:34"
+                },
+                {
+                  "assignments": [
+                    8108
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8108,
+                      "mutability": "mutable",
+                      "name": "isTopLevelCall",
+                      "nameLocation": "1913:14:34",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8146,
+                      "src": "1908:19:34",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      },
+                      "typeName": {
+                        "id": 8107,
+                        "name": "bool",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1908:4:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8114,
+                  "initialValue": {
+                    "id": 8113,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "UnaryOperation",
+                    "operator": "!",
+                    "prefix": true,
+                    "src": "1930:53:34",
+                    "subExpression": {
+                      "expression": {
+                        "arguments": [],
+                        "expression": {
+                          "argumentTypes": [],
+                          "expression": {
+                            "id": 8109,
+                            "name": "ERC721A__InitializableStorage",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 8209,
+                            "src": "1931:29:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                              "typeString": "type(library ERC721A__InitializableStorage)"
+                            }
+                          },
+                          "id": 8110,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "layout",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": 8208,
+                          "src": "1931:36:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                            "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                          }
+                        },
+                        "id": 8111,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "kind": "functionCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1931:38:34",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                          "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                        }
+                      },
+                      "id": 8112,
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "_initializing",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": 8190,
+                      "src": "1931:52:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1908:75:34"
+                },
+                {
+                  "condition": {
+                    "id": 8115,
+                    "name": "isTopLevelCall",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8108,
+                    "src": "1997:14:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 8133,
+                  "nodeType": "IfStatement",
+                  "src": "1993:176:34",
+                  "trueBody": {
+                    "id": 8132,
+                    "nodeType": "Block",
+                    "src": "2013:156:34",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 8122,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "expression": {
+                                  "id": 8116,
+                                  "name": "ERC721A__InitializableStorage",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 8209,
+                                  "src": "2027:29:34",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                    "typeString": "type(library ERC721A__InitializableStorage)"
+                                  }
+                                },
+                                "id": 8118,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "layout",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": 8208,
+                                "src": "2027:36:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                                }
+                              },
+                              "id": 8119,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "2027:38:34",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                                "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                              }
+                            },
+                            "id": 8120,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberName": "_initializing",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8190,
+                            "src": "2027:52:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "hexValue": "74727565",
+                            "id": 8121,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2082:4:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "true"
+                          },
+                          "src": "2027:59:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 8123,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2027:59:34"
+                      },
+                      {
+                        "expression": {
+                          "id": 8130,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "expression": {
+                                  "id": 8124,
+                                  "name": "ERC721A__InitializableStorage",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 8209,
+                                  "src": "2100:29:34",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                    "typeString": "type(library ERC721A__InitializableStorage)"
+                                  }
+                                },
+                                "id": 8126,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "layout",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": 8208,
+                                "src": "2100:36:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                                }
+                              },
+                              "id": 8127,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "2100:38:34",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                                "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                              }
+                            },
+                            "id": 8128,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberName": "_initialized",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8188,
+                            "src": "2100:51:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "hexValue": "74727565",
+                            "id": 8129,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2154:4:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "true"
+                          },
+                          "src": "2100:58:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 8131,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2100:58:34"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": 8134,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "2179:1:34"
+                },
+                {
+                  "condition": {
+                    "id": 8135,
+                    "name": "isTopLevelCall",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8108,
+                    "src": "2195:14:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "id": 8145,
+                  "nodeType": "IfStatement",
+                  "src": "2191:105:34",
+                  "trueBody": {
+                    "id": 8144,
+                    "nodeType": "Block",
+                    "src": "2211:85:34",
+                    "statements": [
+                      {
+                        "expression": {
+                          "id": 8142,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "expression": {
+                              "arguments": [],
+                              "expression": {
+                                "argumentTypes": [],
+                                "expression": {
+                                  "id": 8136,
+                                  "name": "ERC721A__InitializableStorage",
+                                  "nodeType": "Identifier",
+                                  "overloadedDeclarations": [],
+                                  "referencedDeclaration": 8209,
+                                  "src": "2225:29:34",
+                                  "typeDescriptions": {
+                                    "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                    "typeString": "type(library ERC721A__InitializableStorage)"
+                                  }
+                                },
+                                "id": 8138,
+                                "isConstant": false,
+                                "isLValue": false,
+                                "isPure": false,
+                                "lValueRequested": false,
+                                "memberName": "layout",
+                                "nodeType": "MemberAccess",
+                                "referencedDeclaration": 8208,
+                                "src": "2225:36:34",
+                                "typeDescriptions": {
+                                  "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                                  "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                                }
+                              },
+                              "id": 8139,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "kind": "functionCall",
+                              "lValueRequested": false,
+                              "names": [],
+                              "nodeType": "FunctionCall",
+                              "src": "2225:38:34",
+                              "tryCall": false,
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                                "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                              }
+                            },
+                            "id": 8140,
+                            "isConstant": false,
+                            "isLValue": true,
+                            "isPure": false,
+                            "lValueRequested": true,
+                            "memberName": "_initializing",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8190,
+                            "src": "2225:52:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "hexValue": "66616c7365",
+                            "id": 8141,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "bool",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2280:5:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_bool",
+                              "typeString": "bool"
+                            },
+                            "value": "false"
+                          },
+                          "src": "2225:60:34",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_bool",
+                            "typeString": "bool"
+                          }
+                        },
+                        "id": 8143,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2225:60:34"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8089,
+              "nodeType": "StructuredDocumentation",
+              "src": "1228:93:34",
+              "text": " @dev Modifier to protect an initializer function from being invoked twice."
+            },
+            "id": 8147,
+            "name": "initializerERC721A",
+            "nameLocation": "1335:18:34",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 8090,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1353:2:34"
+            },
+            "src": "1326:976:34",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 8159,
+              "nodeType": "Block",
+              "src": "2526:179:34",
+              "statements": [
+                {
+                  "expression": {
+                    "arguments": [
+                      {
+                        "expression": {
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "expression": {
+                              "id": 8151,
+                              "name": "ERC721A__InitializableStorage",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 8209,
+                              "src": "2557:29:34",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_contract$_ERC721A__InitializableStorage_$8209_$",
+                                "typeString": "type(library ERC721A__InitializableStorage)"
+                              }
+                            },
+                            "id": 8152,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "memberName": "layout",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": 8208,
+                            "src": "2557:36:34",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_pure$__$returns$_t_struct$_Layout_$8191_storage_ptr_$",
+                              "typeString": "function () pure returns (struct ERC721A__InitializableStorage.Layout storage pointer)"
+                            }
+                          },
+                          "id": 8153,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "2557:38:34",
+                          "tryCall": false,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                            "typeString": "struct ERC721A__InitializableStorage.Layout storage pointer"
+                          }
+                        },
+                        "id": 8154,
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "_initializing",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": 8190,
+                        "src": "2557:52:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "hexValue": "455243373231415f5f496e697469616c697a61626c653a20636f6e7472616374206973206e6f7420696e697469616c697a696e67",
+                        "id": 8155,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "2623:54:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_239f0ec0e1e78d95d6f1cd880eea074bcac107bab4273133b159f59bd4e89b66",
+                          "typeString": "literal_string \"ERC721A__Initializable: contract is not initializing\""
+                        },
+                        "value": "ERC721A__Initializable: contract is not initializing"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_239f0ec0e1e78d95d6f1cd880eea074bcac107bab4273133b159f59bd4e89b66",
+                          "typeString": "literal_string \"ERC721A__Initializable: contract is not initializing\""
+                        }
+                      ],
+                      "id": 8150,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        4294967278,
+                        4294967278
+                      ],
+                      "referencedDeclaration": 4294967278,
+                      "src": "2536:7:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 8156,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2536:151:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 8157,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2536:151:34"
+                },
+                {
+                  "id": 8158,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "2697:1:34"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8148,
+              "nodeType": "StructuredDocumentation",
+              "src": "2308:178:34",
+              "text": " @dev Modifier to protect an initialization function so that it can only be invoked by functions with the\n {initializer} modifier, directly or indirectly."
+            },
+            "id": 8160,
+            "name": "onlyInitializingERC721A",
+            "nameLocation": "2500:23:34",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 8149,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2523:2:34"
+            },
+            "src": "2491:214:34",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 8181,
+              "nodeType": "Block",
+              "src": "2849:503:34",
+              "statements": [
+                {
+                  "assignments": [
+                    8167
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8167,
+                      "mutability": "mutable",
+                      "name": "self",
+                      "nameLocation": "3216:4:34",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8181,
+                      "src": "3208:12:34",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      },
+                      "typeName": {
+                        "id": 8166,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "3208:7:34",
+                        "stateMutability": "nonpayable",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8172,
+                  "initialValue": {
+                    "arguments": [
+                      {
+                        "id": 8170,
+                        "name": "this",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 4294967268,
+                        "src": "3231:4:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_contract$_ERC721A__Initializable_$8183",
+                          "typeString": "contract ERC721A__Initializable"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_contract$_ERC721A__Initializable_$8183",
+                          "typeString": "contract ERC721A__Initializable"
+                        }
+                      ],
+                      "id": 8169,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "lValueRequested": false,
+                      "nodeType": "ElementaryTypeNameExpression",
+                      "src": "3223:7:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_address_$",
+                        "typeString": "type(address)"
+                      },
+                      "typeName": {
+                        "id": 8168,
+                        "name": "address",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "3223:7:34",
+                        "typeDescriptions": {}
+                      }
+                    },
+                    "id": 8171,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "typeConversion",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "3223:13:34",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "3208:28:34"
+                },
+                {
+                  "assignments": [
+                    8174
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8174,
+                      "mutability": "mutable",
+                      "name": "cs",
+                      "nameLocation": "3254:2:34",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8181,
+                      "src": "3246:10:34",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 8173,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "3246:7:34",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8175,
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "3246:10:34"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "3275:47:34",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "3289:23:34",
+                        "value": {
+                          "arguments": [
+                            {
+                              "name": "self",
+                              "nodeType": "YulIdentifier",
+                              "src": "3307:4:34"
+                            }
+                          ],
+                          "functionName": {
+                            "name": "extcodesize",
+                            "nodeType": "YulIdentifier",
+                            "src": "3295:11:34"
+                          },
+                          "nodeType": "YulFunctionCall",
+                          "src": "3295:17:34"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "cs",
+                            "nodeType": "YulIdentifier",
+                            "src": "3289:2:34"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 8174,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "3289:2:34",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 8167,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "3307:4:34",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 8176,
+                  "nodeType": "InlineAssembly",
+                  "src": "3266:56:34"
+                },
+                {
+                  "expression": {
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 8179,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "id": 8177,
+                      "name": "cs",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 8174,
+                      "src": "3338:2:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "hexValue": "30",
+                      "id": 8178,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "3344:1:34",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "3338:7:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "functionReturnParameters": 8165,
+                  "id": 8180,
+                  "nodeType": "Return",
+                  "src": "3331:14:34"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 8161,
+              "nodeType": "StructuredDocumentation",
+              "src": "2711:79:34",
+              "text": "@dev Returns true if and only if the function is running in the constructor"
+            },
+            "id": 8182,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "_isConstructor",
+            "nameLocation": "2804:14:34",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8162,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2818:2:34"
+            },
+            "returnParameters": {
+              "id": 8165,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8164,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8182,
+                  "src": "2843:4:34",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 8163,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2843:4:34",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2842:6:34"
+            },
+            "scope": 8183,
+            "src": "2795:557:34",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "private"
+          }
+        ],
+        "scope": 8184,
+        "src": "1098:2256:34",
+        "usedErrors": []
+      }
+    ],
+    "src": "32:3323:34"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.0",
+  "updatedAt": "2022-07-11T09:51:37.979Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
