@@ -1,0 +1,4 @@
+{
+  "solidity.defaultCompiler": "embedded",
+  "solidity.compileUsingLocalVersion": "d:\\Repo\\NFT-Launch\\smart-contracts\\soljson-v0.8.0+commit.c7dfd78e.js"
+}
