@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.7.0",
+    "@openzeppelin/contracts-upgradeable": "^4.7.0",
+    "@remix-project/remixd": "^0.6.2"
+  },
+  "devDependencies": {
+    "@openzeppelin/truffle-upgrades": "^1.15.0",
+    "erc721a": "^4.1.0",
+    "erc721a-upgradeable": "^4.1.0"
+  }
+}
