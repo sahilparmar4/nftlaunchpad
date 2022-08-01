@@ -1,0 +1,1303 @@
+{
+  "contractName": "ERC721AStorage",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"erc721a-upgradeable/contracts/ERC721AStorage.sol\":\"ERC721AStorage\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"erc721a-upgradeable/contracts/ERC721AStorage.sol\":{\"keccak256\":\"0x67be0d0b6f0166ebae4708153076a9e2f5f19cb6911b2a8b753ea2e8d3d5e933\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a9cf8fb15f1ddb156d3dd245b7c1db4d29ce9d225d80a1b37a202b55b1074ad3\",\"dweb:/ipfs/QmcQLpxiiAcPa2wBDgYes85wnWK9V7v2bJQHZc9tpUe3LL\"]},\"erc721a-upgradeable/contracts/ERC721AUpgradeable.sol\":{\"keccak256\":\"0x6ebe5eb0e7badc75e4cfd6cc665f2871fa64066bf8f811c07d90ca5ebace79bc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://7e5a78f7dc05b58b8d60fb8db84c79fa31714dc0e6a2a45df727d22ddbb1bda4\",\"dweb:/ipfs/QmYMBceHgPryXfkjCTdx3N91ikBC7dsTXtovo6TZjvW36C\"]},\"erc721a-upgradeable/contracts/ERC721A__Initializable.sol\":{\"keccak256\":\"0x4a78c3bccd097e704d6c37cf90af892eae0e3fcb13dcc37e5c1ad6c36f4240f0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1b2d1b219b5d96c2224b6badd91845100ee099adfb569dd898d8f305ba247c07\",\"dweb:/ipfs/QmRVNixh5LtNTDdq9aJT3kqPfZjrMmb6CC26fEuUfF61kc\"]},\"erc721a-upgradeable/contracts/ERC721A__InitializableStorage.sol\":{\"keccak256\":\"0x361a8f273736b37718a98049c3f210381c41e4241ff24a36360e417b94ad87b4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b50cfd64069938167050defd8e6640ecff6a1687ae79f7b6ffb021f3f65b60f2\",\"dweb:/ipfs/QmZa4ynQofKGCxWvM7QdVcZx3MkY3XAPeKjd65v4QvvxXK\"]},\"erc721a-upgradeable/contracts/IERC721AUpgradeable.sol\":{\"keccak256\":\"0xeadcde5a8b5a6d3721b11ac0a6c597b9cf93bb532de86c7a969d275103a71d19\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3d893cc168c2e056d17f68670b7a37e28a393388e4427fe97f2d880036ad658f\",\"dweb:/ipfs/QmUQjyP5SBPw8nUmEK7sDmnJgPaCxigMHBzfGYxUJ4KccS\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122028d8757c99b47804d29fbcc938ec57c73e4221a3a4e8f532571e54b84fb758c664736f6c63430008040033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea264697066735822122028d8757c99b47804d29fbcc938ec57c73e4221a3a4e8f532571e54b84fb758c664736f6c63430008040033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "120:1546:32:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "120:1546:32:-:0;;;;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\nimport {ERC721AUpgradeable} from './ERC721AUpgradeable.sol';\n\nlibrary ERC721AStorage {\n    struct Layout {\n        // The tokenId of the next token to be minted.\n        uint256 _currentIndex;\n        // The number of tokens burned.\n        uint256 _burnCounter;\n        // Token name\n        string _name;\n        // Token symbol\n        string _symbol;\n        // Mapping from token ID to ownership details\n        // An empty struct value does not necessarily mean the token is unowned.\n        // See `_packedOwnershipOf` implementation for details.\n        //\n        // Bits Layout:\n        // - [0..159]   `addr`\n        // - [160..223] `startTimestamp`\n        // - [224]      `burned`\n        // - [225]      `nextInitialized`\n        // - [232..255] `extraData`\n        mapping(uint256 => uint256) _packedOwnerships;\n        // Mapping owner address to address data.\n        //\n        // Bits Layout:\n        // - [0..63]    `balance`\n        // - [64..127]  `numberMinted`\n        // - [128..191] `numberBurned`\n        // - [192..255] `aux`\n        mapping(address => uint256) _packedAddressData;\n        // Mapping from token ID to approved address.\n        mapping(uint256 => address) _tokenApprovals;\n        // Mapping from owner to operator approvals\n        mapping(address => mapping(address => bool)) _operatorApprovals;\n    }\n\n    bytes32 internal constant STORAGE_SLOT = keccak256('ERC721A.contracts.storage.ERC721A');\n\n    function layout() internal pure returns (Layout storage l) {\n        bytes32 slot = STORAGE_SLOT;\n        assembly {\n            l.slot := slot\n        }\n    }\n}\n",
+  "sourcePath": "erc721a-upgradeable\\contracts\\ERC721AStorage.sol",
+  "ast": {
+    "absolutePath": "erc721a-upgradeable/contracts/ERC721AStorage.sol",
+    "exportedSymbols": {
+      "ERC721AStorage": [
+        6262
+      ],
+      "ERC721AUpgradeable": [
+        8080
+      ]
+    },
+    "id": 6263,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6215,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:32"
+      },
+      {
+        "absolutePath": "erc721a-upgradeable/contracts/ERC721AUpgradeable.sol",
+        "file": "./ERC721AUpgradeable.sol",
+        "id": 6217,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 6263,
+        "sourceUnit": 8081,
+        "src": "58:60:32",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 6216,
+              "name": "ERC721AUpgradeable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "src": "66:18:32",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 6262,
+        "linearizedBaseContracts": [
+          6262
+        ],
+        "name": "ERC721AStorage",
+        "nameLocation": "128:14:32",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ERC721AStorage.Layout",
+            "id": 6244,
+            "members": [
+              {
+                "constant": false,
+                "id": 6219,
+                "mutability": "mutable",
+                "name": "_currentIndex",
+                "nameLocation": "236:13:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "228:21:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 6218,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "228:7:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6221,
+                "mutability": "mutable",
+                "name": "_burnCounter",
+                "nameLocation": "307:12:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "299:20:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 6220,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "299:7:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6223,
+                "mutability": "mutable",
+                "name": "_name",
+                "nameLocation": "358:5:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "351:12:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 6222,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "351:6:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6225,
+                "mutability": "mutable",
+                "name": "_symbol",
+                "nameLocation": "404:7:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "397:14:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 6224,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "397:6:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6229,
+                "mutability": "mutable",
+                "name": "_packedOwnerships",
+                "nameLocation": "866:17:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "838:45:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                  "typeString": "mapping(uint256 => uint256)"
+                },
+                "typeName": {
+                  "id": 6228,
+                  "keyType": {
+                    "id": 6226,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "846:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "838:27:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                    "typeString": "mapping(uint256 => uint256)"
+                  },
+                  "valueType": {
+                    "id": 6227,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "857:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6233,
+                "mutability": "mutable",
+                "name": "_packedAddressData",
+                "nameLocation": "1148:18:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "1120:46:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "typeName": {
+                  "id": 6232,
+                  "keyType": {
+                    "id": 6230,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1128:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1120:27:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                    "typeString": "mapping(address => uint256)"
+                  },
+                  "valueType": {
+                    "id": 6231,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1139:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6237,
+                "mutability": "mutable",
+                "name": "_tokenApprovals",
+                "nameLocation": "1258:15:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "1230:43:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_address_$",
+                  "typeString": "mapping(uint256 => address)"
+                },
+                "typeName": {
+                  "id": 6236,
+                  "keyType": {
+                    "id": 6234,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1238:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1230:27:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_uint256_$_t_address_$",
+                    "typeString": "mapping(uint256 => address)"
+                  },
+                  "valueType": {
+                    "id": 6235,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1249:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6243,
+                "mutability": "mutable",
+                "name": "_operatorApprovals",
+                "nameLocation": "1380:18:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "1335:63:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
+                  "typeString": "mapping(address => mapping(address => bool))"
+                },
+                "typeName": {
+                  "id": 6242,
+                  "keyType": {
+                    "id": 6238,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1343:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1335:44:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
+                    "typeString": "mapping(address => mapping(address => bool))"
+                  },
+                  "valueType": {
+                    "id": 6241,
+                    "keyType": {
+                      "id": 6239,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1362:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Mapping",
+                    "src": "1354:24:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                      "typeString": "mapping(address => bool)"
+                    },
+                    "valueType": {
+                      "id": 6240,
+                      "name": "bool",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1373:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Layout",
+            "nameLocation": "156:6:32",
+            "nodeType": "StructDefinition",
+            "scope": 6262,
+            "src": "149:1256:32",
+            "visibility": "public"
+          },
+          {
+            "constant": true,
+            "id": 6249,
+            "mutability": "constant",
+            "name": "STORAGE_SLOT",
+            "nameLocation": "1437:12:32",
+            "nodeType": "VariableDeclaration",
+            "scope": 6262,
+            "src": "1411:87:32",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 6245,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "1411:7:32",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "455243373231412e636f6e7472616374732e73746f726167652e45524337323141",
+                  "id": 6247,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "1462:35:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_2569078dfb4b0305704d3008e7403993ae9601b85f7ae5e742de3de8f8011c40",
+                    "typeString": "literal_string \"ERC721A.contracts.storage.ERC721A\""
+                  },
+                  "value": "ERC721A.contracts.storage.ERC721A"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_2569078dfb4b0305704d3008e7403993ae9601b85f7ae5e742de3de8f8011c40",
+                    "typeString": "literal_string \"ERC721A.contracts.storage.ERC721A\""
+                  }
+                ],
+                "id": 6246,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "1452:9:32",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 6248,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "1452:46:32",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 6260,
+              "nodeType": "Block",
+              "src": "1564:100:32",
+              "statements": [
+                {
+                  "assignments": [
+                    6256
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 6256,
+                      "mutability": "mutable",
+                      "name": "slot",
+                      "nameLocation": "1582:4:32",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 6260,
+                      "src": "1574:12:32",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 6255,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1574:7:32",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 6258,
+                  "initialValue": {
+                    "id": 6257,
+                    "name": "STORAGE_SLOT",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 6249,
+                    "src": "1589:12:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1574:27:32"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "1620:38:32",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "1634:14:32",
+                        "value": {
+                          "name": "slot",
+                          "nodeType": "YulIdentifier",
+                          "src": "1644:4:32"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "l.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "1634:6:32"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 6253,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "1634:6:32",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 6256,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "1644:4:32",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 6259,
+                  "nodeType": "InlineAssembly",
+                  "src": "1611:47:32"
+                }
+              ]
+            },
+            "id": 6261,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "layout",
+            "nameLocation": "1514:6:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6250,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1520:2:32"
+            },
+            "returnParameters": {
+              "id": 6254,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6253,
+                  "mutability": "mutable",
+                  "name": "l",
+                  "nameLocation": "1561:1:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6261,
+                  "src": "1546:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Layout_$6244_storage_ptr",
+                    "typeString": "struct ERC721AStorage.Layout"
+                  },
+                  "typeName": {
+                    "id": 6252,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 6251,
+                      "name": "Layout",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 6244,
+                      "src": "1546:6:32"
+                    },
+                    "referencedDeclaration": 6244,
+                    "src": "1546:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Layout_$6244_storage_ptr",
+                      "typeString": "struct ERC721AStorage.Layout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1545:18:32"
+            },
+            "scope": 6262,
+            "src": "1505:159:32",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 6263,
+        "src": "120:1546:32",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:1634:32"
+  },
+  "legacyAST": {
+    "absolutePath": "erc721a-upgradeable/contracts/ERC721AStorage.sol",
+    "exportedSymbols": {
+      "ERC721AStorage": [
+        6262
+      ],
+      "ERC721AUpgradeable": [
+        8080
+      ]
+    },
+    "id": 6263,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6215,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:32"
+      },
+      {
+        "absolutePath": "erc721a-upgradeable/contracts/ERC721AUpgradeable.sol",
+        "file": "./ERC721AUpgradeable.sol",
+        "id": 6217,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 6263,
+        "sourceUnit": 8081,
+        "src": "58:60:32",
+        "symbolAliases": [
+          {
+            "foreign": {
+              "id": 6216,
+              "name": "ERC721AUpgradeable",
+              "nodeType": "Identifier",
+              "overloadedDeclarations": [],
+              "src": "66:18:32",
+              "typeDescriptions": {}
+            },
+            "nameLocation": "-1:-1:-1"
+          }
+        ],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "fullyImplemented": true,
+        "id": 6262,
+        "linearizedBaseContracts": [
+          6262
+        ],
+        "name": "ERC721AStorage",
+        "nameLocation": "128:14:32",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ERC721AStorage.Layout",
+            "id": 6244,
+            "members": [
+              {
+                "constant": false,
+                "id": 6219,
+                "mutability": "mutable",
+                "name": "_currentIndex",
+                "nameLocation": "236:13:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "228:21:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 6218,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "228:7:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6221,
+                "mutability": "mutable",
+                "name": "_burnCounter",
+                "nameLocation": "307:12:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "299:20:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 6220,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "299:7:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6223,
+                "mutability": "mutable",
+                "name": "_name",
+                "nameLocation": "358:5:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "351:12:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 6222,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "351:6:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6225,
+                "mutability": "mutable",
+                "name": "_symbol",
+                "nameLocation": "404:7:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "397:14:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 6224,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "397:6:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6229,
+                "mutability": "mutable",
+                "name": "_packedOwnerships",
+                "nameLocation": "866:17:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "838:45:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                  "typeString": "mapping(uint256 => uint256)"
+                },
+                "typeName": {
+                  "id": 6228,
+                  "keyType": {
+                    "id": 6226,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "846:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "838:27:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_uint256_$_t_uint256_$",
+                    "typeString": "mapping(uint256 => uint256)"
+                  },
+                  "valueType": {
+                    "id": 6227,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "857:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6233,
+                "mutability": "mutable",
+                "name": "_packedAddressData",
+                "nameLocation": "1148:18:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "1120:46:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                  "typeString": "mapping(address => uint256)"
+                },
+                "typeName": {
+                  "id": 6232,
+                  "keyType": {
+                    "id": 6230,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1128:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1120:27:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_uint256_$",
+                    "typeString": "mapping(address => uint256)"
+                  },
+                  "valueType": {
+                    "id": 6231,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1139:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6237,
+                "mutability": "mutable",
+                "name": "_tokenApprovals",
+                "nameLocation": "1258:15:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "1230:43:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_uint256_$_t_address_$",
+                  "typeString": "mapping(uint256 => address)"
+                },
+                "typeName": {
+                  "id": 6236,
+                  "keyType": {
+                    "id": 6234,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1238:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1230:27:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_uint256_$_t_address_$",
+                    "typeString": "mapping(uint256 => address)"
+                  },
+                  "valueType": {
+                    "id": 6235,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1249:7:32",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 6243,
+                "mutability": "mutable",
+                "name": "_operatorApprovals",
+                "nameLocation": "1380:18:32",
+                "nodeType": "VariableDeclaration",
+                "scope": 6244,
+                "src": "1335:63:32",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
+                  "typeString": "mapping(address => mapping(address => bool))"
+                },
+                "typeName": {
+                  "id": 6242,
+                  "keyType": {
+                    "id": 6238,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1343:7:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "nodeType": "Mapping",
+                  "src": "1335:44:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_mapping$_t_address_$_t_mapping$_t_address_$_t_bool_$_$",
+                    "typeString": "mapping(address => mapping(address => bool))"
+                  },
+                  "valueType": {
+                    "id": 6241,
+                    "keyType": {
+                      "id": 6239,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1362:7:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Mapping",
+                    "src": "1354:24:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_mapping$_t_address_$_t_bool_$",
+                      "typeString": "mapping(address => bool)"
+                    },
+                    "valueType": {
+                      "id": 6240,
+                      "name": "bool",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1373:4:32",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    }
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Layout",
+            "nameLocation": "156:6:32",
+            "nodeType": "StructDefinition",
+            "scope": 6262,
+            "src": "149:1256:32",
+            "visibility": "public"
+          },
+          {
+            "constant": true,
+            "id": 6249,
+            "mutability": "constant",
+            "name": "STORAGE_SLOT",
+            "nameLocation": "1437:12:32",
+            "nodeType": "VariableDeclaration",
+            "scope": 6262,
+            "src": "1411:87:32",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 6245,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "1411:7:32",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "455243373231412e636f6e7472616374732e73746f726167652e45524337323141",
+                  "id": 6247,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "1462:35:32",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_2569078dfb4b0305704d3008e7403993ae9601b85f7ae5e742de3de8f8011c40",
+                    "typeString": "literal_string \"ERC721A.contracts.storage.ERC721A\""
+                  },
+                  "value": "ERC721A.contracts.storage.ERC721A"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_2569078dfb4b0305704d3008e7403993ae9601b85f7ae5e742de3de8f8011c40",
+                    "typeString": "literal_string \"ERC721A.contracts.storage.ERC721A\""
+                  }
+                ],
+                "id": 6246,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "1452:9:32",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 6248,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "1452:46:32",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 6260,
+              "nodeType": "Block",
+              "src": "1564:100:32",
+              "statements": [
+                {
+                  "assignments": [
+                    6256
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 6256,
+                      "mutability": "mutable",
+                      "name": "slot",
+                      "nameLocation": "1582:4:32",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 6260,
+                      "src": "1574:12:32",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 6255,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "1574:7:32",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 6258,
+                  "initialValue": {
+                    "id": 6257,
+                    "name": "STORAGE_SLOT",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 6249,
+                    "src": "1589:12:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "1574:27:32"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "1620:38:32",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "1634:14:32",
+                        "value": {
+                          "name": "slot",
+                          "nodeType": "YulIdentifier",
+                          "src": "1644:4:32"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "l.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "1634:6:32"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 6253,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "1634:6:32",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 6256,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "1644:4:32",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 6259,
+                  "nodeType": "InlineAssembly",
+                  "src": "1611:47:32"
+                }
+              ]
+            },
+            "id": 6261,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "layout",
+            "nameLocation": "1514:6:32",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6250,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1520:2:32"
+            },
+            "returnParameters": {
+              "id": 6254,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6253,
+                  "mutability": "mutable",
+                  "name": "l",
+                  "nameLocation": "1561:1:32",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6261,
+                  "src": "1546:16:32",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Layout_$6244_storage_ptr",
+                    "typeString": "struct ERC721AStorage.Layout"
+                  },
+                  "typeName": {
+                    "id": 6252,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 6251,
+                      "name": "Layout",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 6244,
+                      "src": "1546:6:32"
+                    },
+                    "referencedDeclaration": 6244,
+                    "src": "1546:6:32",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Layout_$6244_storage_ptr",
+                      "typeString": "struct ERC721AStorage.Layout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1545:18:32"
+            },
+            "scope": 6262,
+            "src": "1505:159:32",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 6263,
+        "src": "120:1546:32",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:1634:32"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.0",
+  "updatedAt": "2022-07-11T09:51:37.875Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
