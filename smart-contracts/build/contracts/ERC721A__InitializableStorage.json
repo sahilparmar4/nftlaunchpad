@@ -1,0 +1,746 @@
+{
+  "contractName": "ERC721A__InitializableStorage",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"details\":\"This is a base storage for the  initialization function for upgradeable diamond facet contracts*\",\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"erc721a-upgradeable/contracts/ERC721A__InitializableStorage.sol\":\"ERC721A__InitializableStorage\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"erc721a-upgradeable/contracts/ERC721A__InitializableStorage.sol\":{\"keccak256\":\"0x361a8f273736b37718a98049c3f210381c41e4241ff24a36360e417b94ad87b4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b50cfd64069938167050defd8e6640ecff6a1687ae79f7b6ffb021f3f65b60f2\",\"dweb:/ipfs/QmZa4ynQofKGCxWvM7QdVcZx3MkY3XAPeKjd65v4QvvxXK\"]}},\"version\":1}",
+  "bytecode": "0x60566050600b82828239805160001a6073146043577f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b30600052607381538281f3fe73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212209ffd331ed38c15c07960f9098130625c64be2d92646b89d786d672964314cb8c64736f6c63430008040033",
+  "deployedBytecode": "0x73000000000000000000000000000000000000000030146080604052600080fdfea26469706673582212209ffd331ed38c15c07960f9098130625c64be2d92646b89d786d672964314cb8c64736f6c63430008040033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "172:579:35:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "172:579:35:-:0;;;;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.0;\n\n/**\n * @dev This is a base storage for the  initialization function for upgradeable diamond facet contracts\n **/\n\nlibrary ERC721A__InitializableStorage {\n    struct Layout {\n        /*\n         * Indicates that the contract has been initialized.\n         */\n        bool _initialized;\n        /*\n         * Indicates that the contract is in the process of being initialized.\n         */\n        bool _initializing;\n    }\n\n    bytes32 internal constant STORAGE_SLOT = keccak256('ERC721A.contracts.storage.initializable.facet');\n\n    function layout() internal pure returns (Layout storage l) {\n        bytes32 slot = STORAGE_SLOT;\n        assembly {\n            l.slot := slot\n        }\n    }\n}\n",
+  "sourcePath": "erc721a-upgradeable\\contracts\\ERC721A__InitializableStorage.sol",
+  "ast": {
+    "absolutePath": "erc721a-upgradeable/contracts/ERC721A__InitializableStorage.sol",
+    "exportedSymbols": {
+      "ERC721A__InitializableStorage": [
+        8209
+      ]
+    },
+    "id": 8210,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8185,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:35"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": {
+          "id": 8186,
+          "nodeType": "StructuredDocumentation",
+          "src": "58:112:35",
+          "text": " @dev This is a base storage for the  initialization function for upgradeable diamond facet contracts*"
+        },
+        "fullyImplemented": true,
+        "id": 8209,
+        "linearizedBaseContracts": [
+          8209
+        ],
+        "name": "ERC721A__InitializableStorage",
+        "nameLocation": "180:29:35",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ERC721A__InitializableStorage.Layout",
+            "id": 8191,
+            "members": [
+              {
+                "constant": false,
+                "id": 8188,
+                "mutability": "mutable",
+                "name": "_initialized",
+                "nameLocation": "329:12:35",
+                "nodeType": "VariableDeclaration",
+                "scope": 8191,
+                "src": "324:17:35",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 8187,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "324:4:35",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8190,
+                "mutability": "mutable",
+                "name": "_initializing",
+                "nameLocation": "458:13:35",
+                "nodeType": "VariableDeclaration",
+                "scope": 8191,
+                "src": "453:18:35",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 8189,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "453:4:35",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Layout",
+            "nameLocation": "223:6:35",
+            "nodeType": "StructDefinition",
+            "scope": 8209,
+            "src": "216:262:35",
+            "visibility": "public"
+          },
+          {
+            "constant": true,
+            "id": 8196,
+            "mutability": "constant",
+            "name": "STORAGE_SLOT",
+            "nameLocation": "510:12:35",
+            "nodeType": "VariableDeclaration",
+            "scope": 8209,
+            "src": "484:99:35",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 8192,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "484:7:35",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "455243373231412e636f6e7472616374732e73746f726167652e696e697469616c697a61626c652e6661636574",
+                  "id": 8194,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "535:47:35",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_ee151c8401928dc223602bb187aff91b9a56c7cae5476ef1b3287b085a16c85f",
+                    "typeString": "literal_string \"ERC721A.contracts.storage.initializable.facet\""
+                  },
+                  "value": "ERC721A.contracts.storage.initializable.facet"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_ee151c8401928dc223602bb187aff91b9a56c7cae5476ef1b3287b085a16c85f",
+                    "typeString": "literal_string \"ERC721A.contracts.storage.initializable.facet\""
+                  }
+                ],
+                "id": 8193,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "525:9:35",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 8195,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "525:58:35",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 8207,
+              "nodeType": "Block",
+              "src": "649:100:35",
+              "statements": [
+                {
+                  "assignments": [
+                    8203
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8203,
+                      "mutability": "mutable",
+                      "name": "slot",
+                      "nameLocation": "667:4:35",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8207,
+                      "src": "659:12:35",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 8202,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "659:7:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8205,
+                  "initialValue": {
+                    "id": 8204,
+                    "name": "STORAGE_SLOT",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8196,
+                    "src": "674:12:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "659:27:35"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "705:38:35",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "719:14:35",
+                        "value": {
+                          "name": "slot",
+                          "nodeType": "YulIdentifier",
+                          "src": "729:4:35"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "l.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "719:6:35"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 8200,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "719:6:35",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 8203,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "729:4:35",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 8206,
+                  "nodeType": "InlineAssembly",
+                  "src": "696:47:35"
+                }
+              ]
+            },
+            "id": 8208,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "layout",
+            "nameLocation": "599:6:35",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8197,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "605:2:35"
+            },
+            "returnParameters": {
+              "id": 8201,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8200,
+                  "mutability": "mutable",
+                  "name": "l",
+                  "nameLocation": "646:1:35",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8208,
+                  "src": "631:16:35",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                    "typeString": "struct ERC721A__InitializableStorage.Layout"
+                  },
+                  "typeName": {
+                    "id": 8199,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 8198,
+                      "name": "Layout",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 8191,
+                      "src": "631:6:35"
+                    },
+                    "referencedDeclaration": 8191,
+                    "src": "631:6:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                      "typeString": "struct ERC721A__InitializableStorage.Layout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "630:18:35"
+            },
+            "scope": 8209,
+            "src": "590:159:35",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 8210,
+        "src": "172:579:35",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:719:35"
+  },
+  "legacyAST": {
+    "absolutePath": "erc721a-upgradeable/contracts/ERC721A__InitializableStorage.sol",
+    "exportedSymbols": {
+      "ERC721A__InitializableStorage": [
+        8209
+      ]
+    },
+    "id": 8210,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8185,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:23:35"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "library",
+        "documentation": {
+          "id": 8186,
+          "nodeType": "StructuredDocumentation",
+          "src": "58:112:35",
+          "text": " @dev This is a base storage for the  initialization function for upgradeable diamond facet contracts*"
+        },
+        "fullyImplemented": true,
+        "id": 8209,
+        "linearizedBaseContracts": [
+          8209
+        ],
+        "name": "ERC721A__InitializableStorage",
+        "nameLocation": "180:29:35",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ERC721A__InitializableStorage.Layout",
+            "id": 8191,
+            "members": [
+              {
+                "constant": false,
+                "id": 8188,
+                "mutability": "mutable",
+                "name": "_initialized",
+                "nameLocation": "329:12:35",
+                "nodeType": "VariableDeclaration",
+                "scope": 8191,
+                "src": "324:17:35",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 8187,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "324:4:35",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 8190,
+                "mutability": "mutable",
+                "name": "_initializing",
+                "nameLocation": "458:13:35",
+                "nodeType": "VariableDeclaration",
+                "scope": 8191,
+                "src": "453:18:35",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 8189,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "453:4:35",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Layout",
+            "nameLocation": "223:6:35",
+            "nodeType": "StructDefinition",
+            "scope": 8209,
+            "src": "216:262:35",
+            "visibility": "public"
+          },
+          {
+            "constant": true,
+            "id": 8196,
+            "mutability": "constant",
+            "name": "STORAGE_SLOT",
+            "nameLocation": "510:12:35",
+            "nodeType": "VariableDeclaration",
+            "scope": 8209,
+            "src": "484:99:35",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 8192,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "484:7:35",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "arguments": [
+                {
+                  "hexValue": "455243373231412e636f6e7472616374732e73746f726167652e696e697469616c697a61626c652e6661636574",
+                  "id": 8194,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "535:47:35",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_ee151c8401928dc223602bb187aff91b9a56c7cae5476ef1b3287b085a16c85f",
+                    "typeString": "literal_string \"ERC721A.contracts.storage.initializable.facet\""
+                  },
+                  "value": "ERC721A.contracts.storage.initializable.facet"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_ee151c8401928dc223602bb187aff91b9a56c7cae5476ef1b3287b085a16c85f",
+                    "typeString": "literal_string \"ERC721A.contracts.storage.initializable.facet\""
+                  }
+                ],
+                "id": 8193,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": 4294967288,
+                "src": "525:9:35",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 8195,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "525:58:35",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 8207,
+              "nodeType": "Block",
+              "src": "649:100:35",
+              "statements": [
+                {
+                  "assignments": [
+                    8203
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 8203,
+                      "mutability": "mutable",
+                      "name": "slot",
+                      "nameLocation": "667:4:35",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 8207,
+                      "src": "659:12:35",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 8202,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "659:7:35",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 8205,
+                  "initialValue": {
+                    "id": 8204,
+                    "name": "STORAGE_SLOT",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 8196,
+                    "src": "674:12:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "659:27:35"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "705:38:35",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "719:14:35",
+                        "value": {
+                          "name": "slot",
+                          "nodeType": "YulIdentifier",
+                          "src": "729:4:35"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "l.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "719:6:35"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 8200,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "719:6:35",
+                      "suffix": "slot",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 8203,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "729:4:35",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 8206,
+                  "nodeType": "InlineAssembly",
+                  "src": "696:47:35"
+                }
+              ]
+            },
+            "id": 8208,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "layout",
+            "nameLocation": "599:6:35",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8197,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "605:2:35"
+            },
+            "returnParameters": {
+              "id": 8201,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8200,
+                  "mutability": "mutable",
+                  "name": "l",
+                  "nameLocation": "646:1:35",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8208,
+                  "src": "631:16:35",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                    "typeString": "struct ERC721A__InitializableStorage.Layout"
+                  },
+                  "typeName": {
+                    "id": 8199,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 8198,
+                      "name": "Layout",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 8191,
+                      "src": "631:6:35"
+                    },
+                    "referencedDeclaration": 8191,
+                    "src": "631:6:35",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Layout_$8191_storage_ptr",
+                      "typeString": "struct ERC721A__InitializableStorage.Layout"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "630:18:35"
+            },
+            "scope": 8209,
+            "src": "590:159:35",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 8210,
+        "src": "172:579:35",
+        "usedErrors": []
+      }
+    ],
+    "src": "33:719:35"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.4+commit.c7e474f2.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.0",
+  "updatedAt": "2022-07-11T09:51:37.982Z",
+  "devdoc": {
+    "details": "This is a base storage for the  initialization function for upgradeable diamond facet contracts*",
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
